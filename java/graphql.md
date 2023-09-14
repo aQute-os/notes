@@ -4,8 +4,32 @@
 # GraphQL 
 
 ```alloy
+module GraphQLSchema
+
+abstract sig Type {
+  name: String
+}
+
+sig ObjectType extends Type {
+  fields: set Field
+}
+
+abstract sig ScalarType extends Type {}
+sig IntType, FloatType, StringType, BooleanType extends ScalarType {}
+
+sig Field {
+  name: String,
+  type: Type
+}
+
+sig Query extends ObjectType {}
+
 sig Schema {
-  
+  query: Query,
+  types: set Type
+} {
+  query in types
+  all t: ObjectType | all f: t.fields | f.type in types
 }
 ```
 
