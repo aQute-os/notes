@@ -78,8 +78,6 @@ one sig Schema {
   types: set Type,
 }
 
--- Query Document
-
 sig Value {
 	type	: Type
 }
